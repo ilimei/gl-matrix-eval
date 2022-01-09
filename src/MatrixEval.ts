@@ -3,12 +3,12 @@ import Expression from "./expression/Expression";
 import NumberWrapper, { ValueType } from "./NumberWrapper";
 import { getTokens, parseTokens } from "./parser";
 
-export class MatrixExec {
+export class MatrixEval {
 
     static ctx: Context = {};
 
     static extend(funcName: string, func: NumberWrapFunc) {
-        MatrixExec.ctx[funcName] = func;
+        MatrixEval.ctx[funcName] = func;
     }
 
     _root: Expression;
@@ -21,7 +21,7 @@ export class MatrixExec {
     exec(values: {
         [key: string]: ValueType;
     } = {}): ValueType {
-        const ctx = { ...MatrixExec.ctx };
+        const ctx = { ...MatrixEval.ctx };
         Object.keys(values).forEach(key => {
             const value = values[key];
             ctx[key] = NumberWrapper.fromKeyValue(key, value);

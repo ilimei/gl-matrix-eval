@@ -1,8 +1,8 @@
 import { vec2, vec3, vec4 } from "gl-matrix";
-import { MatrixExec } from "../MatrixExec";
+import { MatrixEval } from "../MatrixEval";
 import NumberWrapper from "../NumberWrapper";
 
-MatrixExec.extend('cross', (args: NumberWrapper[]) => {
+MatrixEval.extend('cross', (args: NumberWrapper[]) => {
     const [a, b, c] = args;
     switch (a.type) {
         case 'vec2':

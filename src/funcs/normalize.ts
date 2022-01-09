@@ -1,8 +1,8 @@
 import { vec2, vec3, vec4 } from "gl-matrix";
-import { MatrixExec } from "../MatrixExec";
+import { MatrixEval } from "../MatrixEval";
 import NumberWrapper from "../NumberWrapper";
 
-MatrixExec.extend('normalize', (args: NumberWrapper[]) => {
+MatrixEval.extend('normalize', (args: NumberWrapper[]) => {
     const [value] = args;
     switch (value.type) {
         case 'number':

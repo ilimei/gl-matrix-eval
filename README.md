@@ -5,10 +5,10 @@
 glMatrix calculate library, use eval replace with func call
 
 ```js
-import MatrixExec from 'gl-matrix-eval';
+import MatrixEval from 'gl-matrix-eval';
 import {vec2, vec3} from 'gl-matrix';
 
-const add = new MatrixExec('v1 + v2');
+const add = new MatrixEval('v1 + v2');
 
 console.info(add.exec({
     v1: vec2.fromValues(1, 2),

@@ -1,5 +1,5 @@
 import './funcs/normalize';
 import './funcs/cross';
-import { MatrixExec } from './MatrixExec';
+import { MatrixEval } from './MatrixEval';
 
-export default MatrixExec;
+export default MatrixEval;
