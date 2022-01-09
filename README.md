@@ -1,5 +1,6 @@
 # glMartixEval
 
+[![Actions Status](https://github.com/ilimei/gl-matrix-eval/workflows/build/badge.svg)](https://github.com/ilimei/gl-matrix-eval/actions)
 [![NPM Version](https://img.shields.io/npm/v/gl-matrix-eval.svg)](https://www.npmjs.com/package/gl-matrix-eval)
 
 glMatrix calculate library, use eval replace with func call
