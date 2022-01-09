@@ -2,9 +2,8 @@
   "name": "gl-matrix-eval",
   "version": "1.0.0",
   "description": "gl-matrix eval ",
-  "type": "module",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.min.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "mocha --require @babel/register --recursive spec",
     "build": "rollup -c"
