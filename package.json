@@ -1,6 +1,6 @@
 {
   "name": "gl-matrix-eval",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "gl-matrix eval ",
   "type": "module",
   "main": "./dist/index.min.js",

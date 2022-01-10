@@ -3,7 +3,7 @@ import Expression from "./expression/Expression";
 import NumberWrapper, { ValueType } from "./NumberWrapper";
 import { getTokens, parseTokens } from "./parser";
 
-export class MatrixEval implements Context{
+export class MatrixEval implements Context {
 
     static funcs: { [key: string]: NumberWrapFunc } = {};
 
@@ -13,6 +13,7 @@ export class MatrixEval implements Context{
 
     _root: Expression;
     _values: { [key: string]: ValueType; };
+    _map: { [key: string]: NumberWrapper } = {};
 
     constructor(exprStr: string) {
         const tokens = getTokens(exprStr);
@@ -20,9 +21,12 @@ export class MatrixEval implements Context{
     }
 
     getNumberWrapper(key: string): NumberWrapper {
+        if (this._map[key]) {
+            return this._map[key];
+        }
         const value = this._values[key];
         if (value) {
-            return NumberWrapper.fromKeyValue(key, value);
+            return this._map[key] = NumberWrapper.fromKeyValue(key, value);
         }
         throw new Error(`undefined ${key}`);
     }

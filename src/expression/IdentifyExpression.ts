@@ -1,4 +1,4 @@
-import { Context, Token } from "../common";
+import { Context, NumberWrapFunc, Token } from "../common";
 import NumberWrapper from "../NumberWrapper";
 import Expression from "./Expression";
 
@@ -14,7 +14,7 @@ export class IdentifyExpression extends Expression {
         return ctx.getNumberWrapper(this.token.value as string);
     }
 
-    toFunc(ctx: Context): (a: NumberWrapper[]) => NumberWrapper {
+    toFunc(ctx: Context): NumberWrapFunc {
         return ctx.getNumberWrapperFunc(this.token.value as string);
     }
 }
