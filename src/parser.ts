@@ -1,8 +1,9 @@
-import { Token, UnitType } from "./common";
+import { Token } from "./common";
 import { BinaryExpression } from "./expression/BinaryExpression";
 import { CallExpression } from "./expression/CallExpression";
 import Expression from "./expression/Expression";
 import { IdentifyExpression } from "./expression/IdentifyExpression";
+import { LiteralExpression } from "./expression/LiteralExpression";
 import NumberWrapper from "./NumberWrapper";
 
 const MATCH_INT_NUMBER = /0[xob][\da-fA-F]+?(\D|$)/;
@@ -108,7 +109,7 @@ export function getTokens(expr: string) {
 
 export function parseTokens(tokens: Token[]) {
     const opStack: Token[] = [];
-    const valueStack: UnitType[] = [];
+    const valueStack: Expression[] = [];
     const callStack: CallExpression[] = [];
 
     const popOp = () => {
@@ -133,7 +134,7 @@ export function parseTokens(tokens: Token[]) {
                 break;
             }
             case 'number': {
-                valueStack.push(new NumberWrapper('number', tk.value as number));
+                valueStack.push(new LiteralExpression(new NumberWrapper('number', tk.value as number)));
                 break;
             }
             case 'identify': {
@@ -157,7 +158,7 @@ export function parseTokens(tokens: Token[]) {
                 break;
             }
             case 'braceStart': {
-                if (preTk.type === 'identify') { // 函数调用
+                if (preTk?.type === 'identify') { // 函数调用
                     const call = new CallExpression(valueStack.pop() as IdentifyExpression);
                     callStack.push(call);
                     valueStack.push(FUNC_EXPRESSION);

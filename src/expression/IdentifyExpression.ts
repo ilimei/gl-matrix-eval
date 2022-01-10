@@ -11,16 +11,10 @@ export class IdentifyExpression extends Expression {
     }
 
     toNumberWrapper(ctx: Context): NumberWrapper {
-        if(!ctx[this.token.value]) {
-            throw new Error(`undefined ${this.token.value}`)
-        }
-        return ctx[this.token.value] as NumberWrapper;
+        return ctx.getNumberWrapper(this.token.value as string);
     }
 
     toFunc(ctx: Context): (a: NumberWrapper[]) => NumberWrapper {
-        if(!ctx[this.token.value]) {
-            throw new Error(`undefined ${this.token.value}`)
-        }
-        return ctx[this.token.value] as (a: NumberWrapper[]) => NumberWrapper;
+        return ctx.getNumberWrapperFunc(this.token.value as string);
     }
 }

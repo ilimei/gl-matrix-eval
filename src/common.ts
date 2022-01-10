@@ -1,4 +1,3 @@
-import Expression from "./expression/Expression";
 import NumberWrapper from "./NumberWrapper";
 
 export interface Token {
@@ -7,6 +6,7 @@ export interface Token {
 }
 
 export type NumberWrapFunc = (a: NumberWrapper[]) => NumberWrapper;
-export type Context = { [key: string]: NumberWrapper | NumberWrapFunc }
-
-export type UnitType = Expression | NumberWrapper;
+export type Context = {
+    getNumberWrapper: (key: string) => NumberWrapper;
+    getNumberWrapperFunc: (key: string) => NumberWrapFunc;
+}
