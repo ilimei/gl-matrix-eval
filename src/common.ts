@@ -5,7 +5,7 @@ export interface Token {
     value: string | number;
 }
 
-export type NumberWrapFunc = (a: NumberWrapper[]) => NumberWrapper;
+export type NumberWrapFunc = (a: NumberWrapper[], ret: NumberWrapper) => NumberWrapper;
 export type Context = {
     getNumberWrapper: (key: string) => NumberWrapper;
     getNumberWrapperFunc: (key: string) => NumberWrapFunc;
