@@ -1,32 +1,51 @@
-import { Context, UnitType } from "../common";
+import { Context } from "../common";
 import NumberWrapper from "../NumberWrapper";
 import Expression from "./Expression";
 
 export class BinaryExpression extends Expression {
     op: string; // +-*/
-    left: UnitType;
-    right: UnitType;
+    left: Expression;
+    right: Expression;
 
-    constructor(op: string, left: UnitType, right: UnitType) {
+    constructor(op: string, left: Expression, right: Expression) {
         super('BinaryExpression');
         this.op = op;
         this.left = left;
         this.right = right;
-    }
 
-    toNumberWrapper(ctx: Context): NumberWrapper {
-        const left = this.left instanceof NumberWrapper ? this.left : this.left.toNumberWrapper(ctx);
-        const right = this.right instanceof NumberWrapper ? this.right : this.right.toNumberWrapper(ctx);
         switch (this.op) {
             case '+':
-                return left.add(right);
+                this.toNumberWrapper = ctx => {
+                    const left =  this.left.toNumberWrapper(ctx);
+                    const right = this.right.toNumberWrapper(ctx);
+                    return left.add(right);
+                };
+                break;
             case '-':
-                return left.sub(right);
+                this.toNumberWrapper = ctx => {
+                    const left =  this.left.toNumberWrapper(ctx);
+                    const right = this.right.toNumberWrapper(ctx);
+                    return left.sub(right);
+                };
+                break;
             case '*':
-                return left.mul(right);
+                this.toNumberWrapper = ctx => {
+                    const left =  this.left.toNumberWrapper(ctx);
+                    const right = this.right.toNumberWrapper(ctx);
+                    return left.mul(right);
+                };
+                break;
             case '/':
-                return left.div(right);
+                this.toNumberWrapper = ctx => {
+                    const left =  this.left.toNumberWrapper(ctx);
+                    const right = this.right.toNumberWrapper(ctx);
+                    return left.div(right);
+                };
+                break;
         }
+    }
+
+    toNumberWrapper(_ctx: Context): NumberWrapper {
         throw new Error(`unexpected op ${this.op}`);
     }
 }

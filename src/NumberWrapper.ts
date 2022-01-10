@@ -58,10 +58,10 @@ export default class NumberWrapper {
                 } else if(value instanceof NumberWrapper) {
                     if(value.type === 'number') {
                         const n = value.value as number;
-                        return new NumberWrapper('vec2', this._value as number + n);
+                        return new NumberWrapper('number', this._value as number + n);
                     }
                 }
-                throw new Error(`number cant add this value:${value}`);
+                throw new Error(`number cant add this value:${JSON.stringify(value)}`);
             }
             case 'vec2': {
                 if (typeof value === 'number') {
@@ -153,7 +153,7 @@ export default class NumberWrapper {
                 } else if(value instanceof NumberWrapper) {
                     if(value.type === 'number') {
                         const n = value.value as number;
-                        return new NumberWrapper('vec2', this._value as number - n);
+                        return new NumberWrapper('number', this._value as number - n);
                     }
                 }
                 throw new Error(`number cant sub this value:${value}`);
@@ -234,7 +234,7 @@ export default class NumberWrapper {
                 } else if(value instanceof NumberWrapper) {
                     if(value.type === 'number') {
                         const n = value.value as number;
-                        return new NumberWrapper('vec2', this._value as number * n);
+                        return new NumberWrapper('number', this._value as number * n);
                     }
                 }
                 throw new Error(`number cant mul this value:${value}`);
@@ -343,7 +343,7 @@ export default class NumberWrapper {
                 } else if(value instanceof NumberWrapper) {
                     if(value.type === 'number') {
                         const n = value.value as number;
-                        return new NumberWrapper('vec2', this._value as number / n);
+                        return new NumberWrapper('number', this._value as number / n);
                     }
                 }
                 throw new Error(`number cant div this value:${value}`);
